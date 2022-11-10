@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "fc1ff9e1-d4be-444e-8ae1-efb5a31d030b",
+		"name": "ReminderApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"admin_phone\":\"09351111111\",\r\n    \"admin_password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ReminderSerrver}}admins/admin/login",
+							"host": [
+								"{{ReminderSerrver}}admins"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "CreatUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderAdmin}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_name\":\"mahziar\",\r\n    \"user_phone\":\"09356165600\",\r\n    \"user_lastname\":\"ahmadian\",\r\n    \"user_password\":\"1234\",\r\n    \"other_information\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}users/admin/creat/user",
+									"host": [
+										"{{ReminderSerrver}}users"
+									],
+									"path": [
+										"admin",
+										"creat",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderAdmin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"page\":1,\r\n    \"count\":10,\r\n    \"user_name\":null,\r\n    \"user_lastname\":null,\r\n    \"user_phone\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}users/admin/getAllUsers",
+									"host": [
+										"{{ReminderSerrver}}users"
+									],
+									"path": [
+										"admin",
+										"getAllUsers"
+									]
+								},
+								"description": "if any of the fields has a value != null, it will search on that field, if all the fields are null, it will return all the data."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "LoginUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_phone\":\"09356165600\",\r\n    \"user_password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}users/user/login",
+									"host": [
+										"{{ReminderSerrver}}users"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reminder",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_title\":\"Reminder One\",\r\n    \"reminder_message\":\"Message for reminder one\",\r\n    \"reminder_showtime\":\"2022-11-10T22:59:39\",\r\n    \"reminder_alarm_time\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/create",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								},
+								"description": "You can not initially assume a value for"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_id\":\"e1763163-3762-45ee-ad07-6f932c50c810\",\r\n    \"reminder_title\":\"Reminder One Edited\",\r\n    \"reminder_message\":\"Message for reminder one Edited\",\r\n    \"reminder_showtime\":\"2022-10-8T22:59:39\",\r\n    \"reminder_alarm_time\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/edit",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"edit"
+									]
+								},
+								"description": "You can set a value for reminder_alarm_time in this api or not"
+							},
+							"response": []
+						},
+						{
+							"name": "AddAlarm",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_id\":\"e1763163-3762-45ee-ad07-6f932c50c810\",\r\n    \"reminder_alarm_time\":\"2022-09-28T22:59:39\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/add/alarm",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"add",
+										"alarm"
+									]
+								},
+								"description": "You can set a value for reminder_alarm_time in this api or not"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_id\":\"e1763163-3762-45ee-ad07-6f932c50c810\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/delete",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"delete"
+									]
+								},
+								"description": "You can set a value for reminder_alarm_time in this api or not"
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_title\":null,\r\n    \"reminder_message\":null,\r\n    \"reminder_showtime\":null,\r\n    \"reminder_alarm_time\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/getAll",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"getAll"
+									]
+								},
+								"description": "if any of the fields has a value != null, it will search on that field, if all the fields are null, it will return all the data."
+							},
+							"response": []
+						},
+						{
+							"name": "GetOne",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{ReminderUser}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reminder_id\":\"e1763163-3762-45ee-ad07-6f932c50c810\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReminderSerrver}}reminders/user/getOne",
+									"host": [
+										"{{ReminderSerrver}}reminders"
+									],
+									"path": [
+										"user",
+										"getOne"
+									]
+								},
+								"description": "if any of the fields has a value != null, it will search on that field, if all the fields are null, it will return all the data."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
